@@ -9,6 +9,10 @@ shipImage.src = "rocket.png";
 var globeImage = new Image();
 globeImage.src = "images/globe.png";
 
+var blockImage = new Image();
+blockImage.src = "images/block.png";
+
+
 var angle = 0;
 var angleSpeed = 0;
 var globalTime = 0;
@@ -46,6 +50,10 @@ function draw()
 {
   ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
-  drawPolarImage(shipImage, 100, angle, 1);
+  drawPolarImage(shipImage, 150, angle, 1);
   drawRotatedImage(globeImage, 0, 0, globalTime/200, 0.3);
+  drawPolarImage(blockImage, 95, globalTime/200, 0.1);
+  drawPolarImage(blockImage, 90, 270+globalTime/200, 0.09);
+  drawPolarImage(blockImage, 92, 120+globalTime/200, 0.08);
+
 }
