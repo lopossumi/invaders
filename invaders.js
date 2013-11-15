@@ -15,6 +15,9 @@ blockImage.src = "images/block.png";
 var bgImage = new Image();
 bgImage.src = "images/background.png";
 
+var mannerheimImage = new Image();
+mannerheimImage.src = "images/mannerheim.png";
+
 
 var angle = 0;
 var angleSpeed = 0;
@@ -54,9 +57,11 @@ function draw()
   //ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
   drawRotatedImage(bgImage, 0, 0, 0, 1);
   drawPolarImage(shipImage, 150, angle, 1);
-  drawRotatedImage(globeImage, 0, 0, globalTime/200, 0.3);
   drawPolarImage(blockImage, 95, globalTime/200, 0.1);
   drawPolarImage(blockImage, 90, 270+globalTime/200, 0.09);
   drawPolarImage(blockImage, 92, 120+globalTime/200, 0.08);
+  drawPolarImage(blockImage, 92, 90+globalTime/200, 0.08);
+  drawPolarImage(mannerheimImage, 92, 170+globalTime/200, 0.3);
+  drawRotatedImage(globeImage, 0, 0, globalTime/200, 0.3);
 
 }
