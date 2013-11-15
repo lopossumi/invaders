@@ -6,29 +6,46 @@ window.onload = init;
 var shipImage = new Image();
 shipImage.src = "rocket.png";
 
+var globeImage = new Image();
+globeImage.src = "images/globe.png";
+
 var angle = 0;
+var angleSpeed = 0;
+var globalTime = 0;
+var frameTime = 1.0/FPS;
 
 function init()
 {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
+  ctx.translate(canvas.width/2, canvas.height/2);
   setInterval(update, 1000 / FPS );
 }
 
 function update()
 {
-  if(input.isDown('d')) 
+  if(input.isDown('d'))
   {
-    angle += 5;
+    angleSpeed += 1;
   }
 
+  if(input.isDown('a'))
+  {
+    angleSpeed -= 1;
+  }
+
+  angle += angleSpeed;
+  if(angleSpeed > 20) angleSpeed = 10;
+  angleSpeed = angleSpeed*0.8;
+
   draw();
+  globalTime += 1000/FPS;
 }
 
 function draw()
 {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); 
+  ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
-  drawRotatedImage(shipImage, 100, 100, angle) 
-
+  drawPolarImage(shipImage, 100, angle, 1);
+  drawRotatedImage(globeImage, 0, 0, globalTime/200, 0.3);
 }

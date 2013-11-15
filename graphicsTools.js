@@ -1,20 +1,26 @@
-var TO_RADIANS = Math.PI/180; 
+var TO_RADIANS = Math.PI/180;
 var TO_DEGREES = 180/Math.PI;
 
-function drawRotatedImage(image, x, y, angle) 
-{ 
-	ctx.save(); 
+function drawRotatedImage(image, x, y, angle, scale)
+{
+	ctx.save();
 	ctx.translate(x, y);
+  ctx.scale(scale, scale);
 	ctx.rotate(angle * TO_RADIANS);
 	ctx.drawImage(image, -(image.width/2), -(image.height/2));
-	ctx.restore(); 
+	ctx.restore();
+}
+
+function drawPolarImage(image, radius, angle, scale)
+{
+  drawRotatedImage(image, cos(angle)*radius, sin(angle)*radius, angle+90, scale)
 }
 
 function drawCircle(x,y,r,color)
 {
     ctx.strokeStyle = color;
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI*2, true); 
+    ctx.arc(x, y, r, 0, Math.PI*2, true);
     ctx.closePath();
     ctx.stroke();
 }
@@ -24,10 +30,10 @@ function drawArc(x,y,r,direction,angle,color)
 {
 	direction = direction*TO_RADIANS-Math.PI/2;
     ctx.strokeStyle = color;
-  
+
     ctx.beginPath();
     ctx.moveTo(x,y);
-    ctx.arc(x, y, r, direction+angle*TO_RADIANS/2, direction-angle*TO_RADIANS/2, true); 
+    ctx.arc(x, y, r, direction+angle*TO_RADIANS/2, direction-angle*TO_RADIANS/2, true);
     ctx.lineTo(x,y);
     ctx.closePath();
     ctx.stroke();
@@ -38,7 +44,7 @@ function drawFilledCircle(x,y,r,color)
 {
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI*2, true); 
+    ctx.arc(x, y, r, 0, Math.PI*2, true);
     ctx.closePath();
     ctx.fill();
 }
