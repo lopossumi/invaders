@@ -3,24 +3,14 @@ var ctx = null;
 
 window.onload = init;
 
-var shipImage = new Image();
-shipImage.src = "rocket.png";
 
-var globeImage = new Image();
-globeImage.src = "images/globe.png";
-
-var blockImage = new Image();
-blockImage.src = "images/block.png";
-
-var playerShotImg = new Image();
-playerShotImg.src = "images/playerShot.png";
-
-var angle = 0;
-var angleSpeed = 0;
 var globalTime = 0;
 var frameTime = 1.0/FPS;
 
 var playerShots = [];
+var ship = new Ship();
+var globe = new Globe();
+var monster = new Monster("redMonster");
 
 function init()
 {
@@ -32,55 +22,62 @@ function init()
 
 function update()
 {
+  handlePlayerInput();
+
+  globe.update(frameTime);
+  monster.update(frameTime);
+  ship.update(frameTime);
+
+  for (i=0; i<playerShots.length; i++)
+  {
+     playerShots[i].update(frameTime);
+
+     // poistetaan ruudulta poistuneet ammukset arraysta
+     if (playerShots[i].isAlive() == false)
+     {
+       playerShots.splice(i,1);
+       i--;
+     }
+  }
+
+
+  draw();
+
+  globalTime += frameTime;
+}
+
+
+function handlePlayerInput()
+{
   if(input.isDown('d'))
   {
-    angleSpeed += 1;
+    ship.steerRight();
   }
 
   if(input.isDown('a'))
   {
-    angleSpeed -= 1;
+    ship.steerLeft();
   }
 
   if(input.isDown('SPACE'))
   {
-    var playerShot = {};
-    playerShot.distance = 180;
-    playerShot.angle = angle;
-    playerShot.angleSpeed = angleSpeed;
-    playerShot.velocity = 100;
-
-    playerShots.push(playerShot);
+    var shot = new Shot(180, ship.angle, 100 );
+    playerShots.push(shot);
   }
-
-
-
-  angle += angleSpeed;
-  if(angleSpeed > 20) angleSpeed = 10;
-  angleSpeed = angleSpeed*0.8;
-
-
-  for (i=0; i<playerShots.length; i++)
-  {
-    playerShots[i].distance += frameTime * playerShots[i].velocity;
-//    playerShots[i].angle +=  playerShots[i].angleSpeed;
-  }
-
-  draw();
-  globalTime += 1000/FPS;
 }
+
 
 function draw()
 {
+  // tyhjennetään näyttö
   ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
-  drawPolarImage(shipImage, 150, angle, 1);
-  drawRotatedImage(globeImage, 0, 0, globalTime/200, 0.3);
-  drawPolarImage(blockImage, 95, globalTime/200, 0.1);
-  drawPolarImage(blockImage, 90, 270+globalTime/200, 0.09);
-  drawPolarImage(blockImage, 92, 120+globalTime/200, 0.08);
+
+  globe.draw();
+  monster.draw();
+  ship.draw();
 
   for (i=0; i<playerShots.length; i++)
-     drawPolarImage(playerShotImg, playerShots[i].distance, playerShots[i].angle, 1);
+    playerShots[i].draw();
 
 }
