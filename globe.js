@@ -23,3 +23,11 @@ Globe.prototype.draw = function()
   drawPolarImage(blockImage, 90, 270+this.angle, 0.09);
   drawPolarImage(blockImage, 92, 120+this.angle, 0.08);
 }
+
+Globe.prototype.getCollisionElements = function()
+{
+  var x = cos(this.angle)*this.distance; 
+  var y = sin(this.angle)*this.distance; 
+  
+  return [{x:x, y:y, radius:40}];
+}

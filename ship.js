@@ -53,3 +53,11 @@ Ship.prototype.draw = function()
 {
   drawPolarImage(shipImage, 150, this.angle, 1);
 }
+
+Ship.prototype.getCollisionElements = function()
+{
+  var x = cos(this.angle)*this.distance; 
+  var y = sin(this.angle)*this.distance; 
+  
+  return [{x:x, y:y, radius:15}];
+}
