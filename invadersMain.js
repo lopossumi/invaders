@@ -42,61 +42,17 @@ function update()
  // TESTATAAN TÄSSÄ SITTEN ONKO ALUS ELOSSA
 
  // testataan osuuko pelaajan ammukset monsteriin
-  for (i=0; i<playerShots.length; i++)
-  {
-     for (j=0; j<monsters.length; j++)
-     {
-       if ( isCollision(playerShots[i], monsters[j]) ){
-         monsters[j].modifyHp(-10);
-         playerShots[i].alive = false;
-       }
-     }
-  }
+  isPlayerHitting();
 
   // onko monsterit maapallolla
-     for (j=0; j<monsters.length; j++)
-     {
-       // if ( isCollision(globe, monsters[j]) )
-           // MAAILMANLOPPU
-     }
+  haveTheInvadersLanded();
 
-
-
-
-  for (i=0; i<playerShots.length; i++)
-  {
-     playerShots[i].update(frameTime);
-
-     // poistetaan ruudulta poistuneet ammukset arraysta
-     if (playerShots[i].isAlive() == false)
-     {
-       playerShots.splice(i,1);
-       i--;
-     }
-  }
+  clearFarawayShots();
 
   // testataan osuuko monsterien ammukset pelaajaan
+  areMonstersHitting();
 
-     for (j=0; j<monsterShots.length; j++)
-     {
-       if ( isCollision(monsterShots[j], ship) ){
-         ship.modifyHp(-10);
-         monsterShots[j].alive = false;
-       }
-     }
-
-
-  for (i=0; i<monsterShots.length; i++)
-  {
-     monsterShots[i].update(frameTime);
-
-     // poistetaan ruudulta poistuneet ammukset arraysta
-     if (monsterShots[i].isAlive() == false)
-     {
-       monsterShots.splice(i,1);
-       i--;
-     }
-  }
+  clearFarawayMonsterShots();
 
 
 
@@ -119,6 +75,69 @@ function update()
   globalTime += frameTime;
 }
 
+function isPlayerHitting()
+{
+  // testataan osuuko pelaajan ammukset monsteriin
+  for (i=0; i<playerShots.length; i++)
+  {
+     for (j=0; j<monsters.length; j++)
+     {
+       if ( isCollision(playerShots[i], monsters[j]) ){
+         monsters[j].modifyHp(-10);
+         playerShots[i].alive = false;
+       }
+     }
+  }
+}
+
+function areMonstersHitting()
+{
+   for (j=0; j<monsterShots.length; j++)
+     {
+       if ( isCollision(monsterShots[j], ship) ){
+         ship.modifyHp(-10);
+         monsterShots[j].alive = false;
+       }
+     }
+}
+
+function haveTheInvadersLanded() {
+   for (j=0; j<monsters.length; j++)
+     {
+       // if ( isCollision(globe, monsters[j]) )
+           // MAAILMANLOPPU
+     }
+}
+
+function clearFarawayShots() 
+{
+   for (i=0; i<playerShots.length; i++)
+  {
+     playerShots[i].update(frameTime);
+
+     // poistetaan ruudulta poistuneet ammukset arraysta
+     if (playerShots[i].isAlive() == false)
+     {
+       playerShots.splice(i,1);
+       i--;
+     }
+  }
+}
+
+function clearFarawayMonsterShots() 
+{
+   for (i=0; i<monsterShots.length; i++)
+  {
+     monsterShots[i].update(frameTime);
+
+     // poistetaan ruudulta poistuneet ammukset arraysta
+     if (monsterShots[i].isAlive() == false)
+     {
+       monsterShots.splice(i,1);
+       i--;
+     }
+  }
+}
 
 function handlePlayerInput()
 {
