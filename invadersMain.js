@@ -69,6 +69,19 @@ function update()
   }
 
 
+  for (i=0; i<monsterShots.length; i++)
+  {
+     monsterShots[i].update(frameTime);
+
+     // poistetaan ruudulta poistuneet ammukset arraysta
+     if (monsterShots[i].isAlive() == false)
+     {
+       monsterShots.splice(i,1);
+       i--;
+     }
+  }
+
+
 
 
   for (i=0; i<monsters.length; i++)
@@ -147,6 +160,10 @@ function draw()
 
   for (i=0; i<playerShots.length; i++)
     playerShots[i].draw();
+
+  for (i=0; i<monsterShots.length; i++)
+    monsterShots[i].draw();
+
 
   for (i=0; i<monsters.length; i++)
     monsters[i].draw();
