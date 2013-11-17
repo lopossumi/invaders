@@ -15,6 +15,7 @@ var monsterShots = [];
 var ship = new Ship();
 var globe = new Globe();
 var statusBar = new StatusBar(ship);
+var soundPlayer = new SoundPlayer(10);
 
 var monsters = [];
 monsters[0] = new Monster("redMonster", monsterShots);
@@ -158,7 +159,7 @@ function handlePlayerInput()
       playerShots.push(shot);
       ship.weaponEnergy -= 10;
       ship.canFire = false;
-		  document.getElementById('fire').play();
+		  soundPlayer.play('fire');
     }
   }
   if(!input.isDown('s')){
