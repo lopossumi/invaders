@@ -42,34 +42,16 @@ function update()
 
  // TESTATAAN TÄSSÄ SITTEN ONKO ALUS ELOSSA
 
- // testataan osuuko pelaajan ammukset monsteriin
   isPlayerHitting();
 
-  // onko monsterit maapallolla
   haveTheInvadersLanded();
 
   clearFarawayShots();
 
-  // testataan osuuko monsterien ammukset pelaajaan
   areMonstersHitting();
 
   clearFarawayMonsterShots();
-
-
-
-
-  for (i=0; i<monsters.length; i++)
-  {
-     monsters[i].update(frameTime);
-
-     if (monsters[i].isAlive() == false)
-     {
-       monsters.splice(i,1);
-       i--;
-     }
-  }
-
-
+  clearMonsters();
 
   draw();
 
@@ -135,6 +117,20 @@ function clearFarawayMonsterShots()
      if (monsterShots[i].isAlive() == false)
      {
        monsterShots.splice(i,1);
+       i--;
+     }
+  }
+}
+
+function clearMonsters() 
+{
+  for (i=0; i<monsters.length; i++)
+  {
+     monsters[i].update(frameTime);
+
+     if (monsters[i].isAlive() == false)
+     {
+       monsters.splice(i,1);
        i--;
      }
   }
