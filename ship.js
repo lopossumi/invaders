@@ -56,8 +56,8 @@ Ship.prototype.draw = function()
 
 Ship.prototype.getCollisionElements = function()
 {
-  var x = cos(this.angle)*this.distance; 
-  var y = sin(this.angle)*this.distance; 
+  var x = cos(this.angle)*150; 
+  var y = sin(this.angle)*150; 
   
   return [{x:x, y:y, radius:15}];
 }
