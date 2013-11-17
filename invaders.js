@@ -10,7 +10,13 @@ var frameTime = 1.0/FPS;
 var playerShots = [];
 var ship = new Ship();
 var globe = new Globe();
+<<<<<<< HEAD
+var monsters = [];
+monsters[0] = new Monster("redMonster");
+=======
 var monster = new Monster("redMonster");
+var monsterswarm = new MonsterSwarm("redMonster", 12);
+>>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
 
 function init()
 {
@@ -25,17 +31,19 @@ function update()
   handlePlayerInput();
 
   globe.update(frameTime);
-  monster.update(frameTime);
   ship.update(frameTime);
 
+<<<<<<< HEAD
 
   for (i=0; i<playerShots.length; i++)
   {
-    if ( isCollision(playerShots[i], monster) )
-      console.log("PUM!");
+     if ( isCollision(playerShots[i], monster) )
+        monster.modifyHp(-10);
   }
 
 
+=======
+>>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
   for (i=0; i<playerShots.length; i++)
   {
      playerShots[i].update(frameTime);
@@ -47,6 +55,24 @@ function update()
        i--;
      }
   }
+
+<<<<<<< HEAD
+  for (i=0; i<monsters.length; i++)
+  {
+     monsters[i].update(frameTime);
+
+     //if (monsters[i].isAlive() == false)
+     //{
+     //  monsters.splice(i,1);
+     //  i--;
+     //}
+  }
+
+
+
+
+=======
+>>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
 
   draw();
 
@@ -68,26 +94,33 @@ function handlePlayerInput()
 
   if(input.isDown('SPACE'))
   {
-    var shot = new Shot(180, ship.angle, 300 );
+    var shot = new Shot(180, ship.angle, 100 );
     playerShots.push(shot);
   }
 }
 
+<<<<<<< HEAD
 function isCollision(thingA, thingB)
 {
   var collElemsA = thingA.getCollisionElements();
   var collElemsB = thingB.getCollisionElements();
   
-  for (var a in collElemsA)
+      console.log( collElemsB.length );
+ 
+  for (var i=0; i<collElemsA.length; i++)
   {
-     for (var b in collElemsB)
+     for (var j=0; j<collElemsB.length; j++)
      {
+         var a = collElemsA[i];
+         var b = collElemsB[j];
          if (distanceBetween(a.x, a.y, b.x, b.y) < a.radius+b.radius )
-          return true;
+           return true;
      }
   }
   return false;
 }
+=======
+>>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
 
 function draw()
 {
@@ -96,10 +129,13 @@ function draw()
 
 
   globe.draw();
-  monster.draw();
   ship.draw();
 
   for (i=0; i<playerShots.length; i++)
     playerShots[i].draw();
+
+  for (i=0; i<monsters.length; i++)
+    monsters[i].draw();
+
 
 }

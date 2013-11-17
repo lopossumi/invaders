@@ -12,6 +12,8 @@ var Monster = function(monsterType)
 	this.descentSpeed = 20;
 	this.distance = 450;
 	this.timeToTurn = 1.0;
+  this.hitpoints= 40;
+  this.alive = true;
 }
 
 Monster.prototype.update = function(dt)
@@ -29,7 +31,12 @@ Monster.prototype.update = function(dt)
 
 
 }
-Shot.prototype.getCollisionElements = function()
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
+Monster.prototype.getCollisionElements = function()
 {
   var x = cos(this.angle)*this.distance; 
   var y = sin(this.angle)*this.distance; 
@@ -37,6 +44,19 @@ Shot.prototype.getCollisionElements = function()
   return [{x:x, y:y, radius:15}];
 }
 
+Monster.prototype.modifyHp = function(hit)
+{
+  
+  this.hitpoints =- hit;
+  if (this.hitpoints <= 0)
+    this.alive = false;
+  
+}
+
+Monster.prototype.isAlive = function()
+{
+  return alive;
+}
 
 Monster.prototype.draw = function()
 {
