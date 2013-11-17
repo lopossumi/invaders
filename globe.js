@@ -4,6 +4,9 @@ globeImage.src = "images/globe.png";
 var blockImage = new Image();
 blockImage.src = "images/block.png";
 
+var mannerheimImage = new Image();
+mannerheimImage.src = "images/mannerheim.png"
+
 var Globe = function()
 {
 	this.angle = 0;
@@ -19,9 +22,10 @@ Globe.prototype.update = function(dt)
 Globe.prototype.draw = function()
 {
   drawRotatedImage(globeImage, 0, 0, this.angle, 0.3);
-  drawPolarImage(blockImage, 95, this.angle, 0.1);
-  drawPolarImage(blockImage, 90, 270+this.angle, 0.09);
-  drawPolarImage(blockImage, 92, 120+this.angle, 0.08);
+  drawPolarImage(blockImage, 100, this.angle, 0.15);
+  drawPolarImage(blockImage, 115, 270+this.angle, 0.25);
+  drawPolarImage(blockImage, 100, 120+this.angle, 0.18);
+  drawPolarImage(mannerheimImage, 100, 150+this.angle, 0.30);
 }
 
 Globe.prototype.getCollisionElements = function()
