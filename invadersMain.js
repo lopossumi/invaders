@@ -16,7 +16,7 @@ var ship = new Ship();
 var globe = new Globe();
 
 var monsters = [];
-monsters[0] = new Monster("redMonster");
+monsters[0] = new Monster("redMonster", monsterShots);
 
 
 function init()

@@ -3,10 +3,11 @@ monsterImage.src = "images/ghost.png";
 
 
 
-var Monster = function(monsterType)
+var Monster = function(monsterType, monsterShots)
 {
 	this.monsterType = monsterType;
-
+  this.monsterShots = monsterShots; 
+  
 	this.angle = 8;
 	this.angleSpeed = 10;
 	this.descentSpeed = 20;
