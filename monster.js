@@ -31,11 +31,7 @@ Monster.prototype.update = function(dt)
 
 
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> c51f6342637b8ef7493d65d8dacb9a8662abea64
 Monster.prototype.getCollisionElements = function()
 {
   var x = cos(this.angle)*this.distance; 
