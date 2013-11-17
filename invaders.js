@@ -31,6 +31,13 @@ function update()
 
   for (i=0; i<playerShots.length; i++)
   {
+    if ( isCollision(playerShots[i], monster) )
+      console.log("PUM!");
+  }
+
+
+  for (i=0; i<playerShots.length; i++)
+  {
      playerShots[i].update(frameTime);
 
      // poistetaan ruudulta poistuneet ammukset arraysta
@@ -40,7 +47,6 @@ function update()
        i--;
      }
   }
-
 
   draw();
 
@@ -67,6 +73,21 @@ function handlePlayerInput()
   }
 }
 
+function isCollision(thingA, thingB)
+{
+  var collElemsA = thingA.getCollisionElements();
+  var collElemsB = thingB.getCollisionElements();
+  
+  for (var a in collElemsA)
+  {
+     for (var b in collElemsB)
+     {
+         if (distanceBetween(a.x, a.y, b.x, b.y) < a.radius+b.radius )
+          return true;
+     }
+  }
+  return false;
+}
 
 function draw()
 {

@@ -88,7 +88,10 @@ function drawArrow(x,y,r,angle,color)
     drawLine(x,y, x+sin(angle)*r, y-cos(angle)*r, color );
 }
 
-
+function distanceBetween( x1, y1, x2, y2 )
+{
+    return Math.sqrt(    Math.pow( (x2-x1), 2)   +   Math.pow( (y2-y1), 2)   );
+}
 
 function sin(angleInDeg)
 {
