@@ -19,6 +19,10 @@ var statusBar = new StatusBar(ship);
 var monsters = [];
 monsters[0] = new Monster("redMonster", monsterShots);
 
+var backgroundImg = new Image();
+backgroundImg.src = "images/background.png";
+
+
 
 function init()
 {
@@ -167,6 +171,7 @@ function draw()
   // tyhjennetään näyttö
   ctx.clearRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
+  drawRotatedImage(backgroundImg, 0, 0, 0, 3);
 
   globe.draw();
   ship.draw();
