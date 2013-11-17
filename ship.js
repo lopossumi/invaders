@@ -10,6 +10,7 @@ var Ship = function()
   this.weaponEnergy = 100;
   this.hitpoints= 60;
   this.alive = true;
+  this.canFire = true;
 }
 
 Ship.prototype.steerRight = function()

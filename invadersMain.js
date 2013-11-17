@@ -93,11 +93,15 @@ function handlePlayerInput()
 
   if(input.isDown('s'))
   {
-    if(ship.weaponEnergy > 10){
+    if(ship.canFire && ship.weaponEnergy > 10){
       var shot = new Shot(180, ship.angle, 200);
       playerShots.push(shot);
       ship.weaponEnergy -= 10;
+      ship.canFire = false;
     }
+  }
+  if(!input.isDown('s')){
+    ship.canFire = true;
   }
 }
 
