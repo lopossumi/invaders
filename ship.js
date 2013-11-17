@@ -7,6 +7,7 @@ var Ship = function()
 {
 	this.angle = 0;
 	this.angleSpeed = 00;
+  this.weaponEnergy = 100;
 }
 
 Ship.prototype.steerRight = function()
@@ -29,6 +30,7 @@ Ship.prototype.update = function(dt)
 {
   this.angle += this.angleSpeed * dt;
   this.angleSpeed = this.angleSpeed*0.7;
+  if(this.weaponEnergy < 100) this.weaponEnergy += 1;
 }
 
 
