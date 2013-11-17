@@ -33,7 +33,7 @@ function update()
   globe.update(frameTime);
   ship.update(frameTime);
 
-
+ // testataan osuuko pelaajan ammukset monsteriins
   for (i=0; i<playerShots.length; i++)
   {
      for (j=0; j<monsters.length; j++)
