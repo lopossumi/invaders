@@ -7,7 +7,7 @@ var Monster = function(monsterType, monsterShots)
 {
 	this.monsterType = monsterType;
   this.monsterShots = monsterShots; 
-  
+
 	this.angle = 8;
 	this.angleSpeed = 10;
 	this.descentSpeed = 20;
@@ -25,6 +25,11 @@ Monster.prototype.update = function(dt)
   {
   	this.angleSpeed = -this.angleSpeed;
   	this.timeToTurn = 2.0;
+
+    // ammutaan
+    var shot = new Shot(this.distace, this.angle, 200);
+    monsterShots.push(shot);
+
   }
 
   this.angle += this.angleSpeed * dt;
