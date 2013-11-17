@@ -11,6 +11,7 @@ var playerShots = [];
 var ship = new Ship();
 var globe = new Globe();
 var monster = new Monster("redMonster");
+var monsterswarm = new MonsterSwarm("redMonster", 12);
 
 function init()
 {
@@ -28,14 +29,6 @@ function update()
   monster.update(frameTime);
   ship.update(frameTime);
 
-
-  for (i=0; i<playerShots.length; i++)
-  {
-    if ( isCollision(playerShots[i], monster) )
-      console.log("PUM!");
-  }
-
-
   for (i=0; i<playerShots.length; i++)
   {
      playerShots[i].update(frameTime);
@@ -47,6 +40,7 @@ function update()
        i--;
      }
   }
+
 
   draw();
 
@@ -68,26 +62,11 @@ function handlePlayerInput()
 
   if(input.isDown('SPACE'))
   {
-    var shot = new Shot(180, ship.angle, 300 );
+    var shot = new Shot(180, ship.angle, 100 );
     playerShots.push(shot);
   }
 }
 
-function isCollision(thingA, thingB)
-{
-  var collElemsA = thingA.getCollisionElements();
-  var collElemsB = thingB.getCollisionElements();
-  
-  for (var a in collElemsA)
-  {
-     for (var b in collElemsB)
-     {
-         if (distanceBetween(a.x, a.y, b.x, b.y) < a.radius+b.radius )
-          return true;
-     }
-  }
-  return false;
-}
 
 function draw()
 {
