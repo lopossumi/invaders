@@ -43,7 +43,7 @@ Monster.prototype.getCollisionElements = function()
 Monster.prototype.modifyHp = function(hit)
 {
   
-  this.hitpoints =- hit;
+  this.hitpoints += hit;
   if (this.hitpoints <= 0)
     this.alive = false;
   
