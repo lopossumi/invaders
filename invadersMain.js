@@ -39,8 +39,10 @@ function update()
   {
      for (j=0; j<monsters.length; j++)
      {
-        if ( isCollision(playerShots[i], monsters[j]) )
-           monsters[j].modifyHp(-10);
+       if ( isCollision(playerShots[i], monsters[j]) ){
+         monsters[j].modifyHp(-10);
+         playerShots[i].alive = false;
+       }
      }
   }
 

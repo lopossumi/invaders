@@ -24,7 +24,7 @@ Monster.prototype.update = function(dt)
   {
   	this.angleSpeed = -this.angleSpeed;
   	this.timeToTurn = 2.0;
-  }	
+  }
 
   this.angle += this.angleSpeed * dt;
   this.distance -= this.descentSpeed * dt;
@@ -34,19 +34,19 @@ Monster.prototype.update = function(dt)
 
 Monster.prototype.getCollisionElements = function()
 {
-  var x = cos(this.angle)*this.distance; 
-  var y = sin(this.angle)*this.distance; 
-  
-  return [{x:x, y:y, radius:15}];
+  var x = cos(this.angle)*this.distance;
+  var y = sin(this.angle)*this.distance;
+
+  return [{x:x, y:y, radius:30}];
 }
 
 Monster.prototype.modifyHp = function(hit)
 {
-  
+
   this.hitpoints += hit;
   if (this.hitpoints <= 0)
     this.alive = false;
-  
+
 }
 
 Monster.prototype.isAlive = function()
@@ -56,8 +56,8 @@ Monster.prototype.isAlive = function()
 
 Monster.prototype.draw = function()
 {
-  
+
   drawPolarImage(monsterImage, this.distance, this.angle, 1.0);
- 
-  
+
+
 }
