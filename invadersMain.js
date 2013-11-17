@@ -139,6 +139,7 @@ function handlePlayerInput()
       playerShots.push(shot);
       ship.weaponEnergy -= 10;
       ship.canFire = false;
+		  document.getElementById('fire').play();
     }
   }
   if(!input.isDown('s')){
