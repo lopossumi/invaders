@@ -35,6 +35,8 @@ function update()
   globe.update(frameTime);
   ship.update(frameTime);
 
+ // TESTATAAN TÄSSÄ SITTEN ONKO ALUS ELOSSA
+
  // testataan osuuko pelaajan ammukset monsteriin
   for (i=0; i<playerShots.length; i++)
   {
