@@ -11,6 +11,7 @@ var globalTime = 0;
 var frameTime = 1.0/FPS;
 
 var playerShots = [];
+var monsterShots = [];
 var ship = new Ship();
 var globe = new Globe();
 
@@ -33,7 +34,7 @@ function update()
   globe.update(frameTime);
   ship.update(frameTime);
 
- // testataan osuuko pelaajan ammukset monsteriins
+ // testataan osuuko pelaajan ammukset monsteriin
   for (i=0; i<playerShots.length; i++)
   {
      for (j=0; j<monsters.length; j++)
@@ -42,6 +43,14 @@ function update()
            monsters[j].modifyHp(-10);
      }
   }
+
+  // onko monsterit maapallolla
+     for (j=0; j<monsters.length; j++)
+     {
+       // if ( isCollision(globe, monsters[j]) )
+           // MAAILMANLOPPU
+     }
+  
 
 
 
