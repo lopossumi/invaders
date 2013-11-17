@@ -24,6 +24,15 @@ Shot.prototype.isAlive = function()
 	return false;
 }
 
+Shot.prototype.getCollisionElements = function()
+{
+	var x = cos(this.angle)*this.distance; 
+	var y = sin(this.angle)*this.distance; 
+	
+	return [{x:x, y:y, radius:5}];
+}
+
+
 Shot.prototype.draw = function()
 {
 	drawPolarImage(playerShotImg, this.distance, this.angle, 1);

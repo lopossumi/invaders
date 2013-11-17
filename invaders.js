@@ -28,6 +28,7 @@ function update()
   monster.update(frameTime);
   ship.update(frameTime);
 
+
   for (i=0; i<playerShots.length; i++)
   {
      playerShots[i].update(frameTime);
@@ -61,7 +62,7 @@ function handlePlayerInput()
 
   if(input.isDown('SPACE'))
   {
-    var shot = new Shot(180, ship.angle, 100 );
+    var shot = new Shot(180, ship.angle, 300 );
     playerShots.push(shot);
   }
 }
