@@ -91,10 +91,13 @@ function handlePlayerInput()
     ship.steerLeft();
   }
 
-  if(input.isDown('SPACE'))
+  if(input.isDown('s'))
   {
-    var shot = new Shot(180, ship.angle, 100 );
-    playerShots.push(shot);
+    if(ship.weaponEnergy > 10){
+      var shot = new Shot(180, ship.angle, 200);
+      playerShots.push(shot);
+      ship.weaponEnergy -= 10;
+    }
   }
 }
 
@@ -102,9 +105,9 @@ function isCollision(thingA, thingB)
 {
   var collElemsA = thingA.getCollisionElements();
   var collElemsB = thingB.getCollisionElements();
-  
+
       console.log( collElemsB.length );
- 
+
   for (var i=0; i<collElemsA.length; i++)
   {
      for (var j=0; j<collElemsB.length; j++)

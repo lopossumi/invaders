@@ -7,7 +7,7 @@ var Ship = function()
 {
 	this.angle = 0;
 	this.angleSpeed = 00;
-
+  this.weaponEnergy = 100;
   this.hitpoints= 60;
   this.alive = true;
 }
@@ -28,11 +28,11 @@ Ship.prototype.steerLeft = function()
 
 Ship.prototype.modifyHp = function(hit)
 {
-  
+
   this.hitpoints += hit;
   if (this.hitpoints <= 0)
     this.alive = false;
-  
+
 }
 
 Ship.prototype.isAlive = function()
@@ -44,6 +44,7 @@ Ship.prototype.update = function(dt)
 {
   this.angle += this.angleSpeed * dt;
   this.angleSpeed = this.angleSpeed*0.7;
+  if(this.weaponEnergy < 100) this.weaponEnergy += 1;
 }
 
 
