@@ -5,32 +5,32 @@ var MonsterSwarm = function(monsterType, swarmSize)
 	this.monsterType = monsterType;
 	this.swarmSize = swarmSize;
 
-	var monsters = [];
-	monsterDistance=0;
+	this.monsters = [];
+	var monsterDist=0;
 
-	for (var i = swarmSize; i>0; i--) 
+	for (var i = this.swarmSize; i>=0; i--) 
 	{
 		var monster = new Monster(monsterType);
-		monster.distance =- monsterDistance;
+		monster.distance =+ monsterDist;
 
-		monsters.push(monster);
+		this.monsters.push(monster);
 
-		monsterDistance =+ 30;
+		monsterDist =+ 30;
 	}
 }
 
 MonsterSwarm.prototype.update = function(dt) {
-	for (var i=0, len=monsters.length; i<len; i++)
+	for (var i=0, len=this.monsters.length; i<len; i++)
 	{ 
-		var monster = monsters[i];
-		monster.update();
+		var monster = this.monsters[i];
+		monster.update(dt);
 	}
 }
 
 
 MonsterSwarm.prototype.draw = function() {
-	for (var i=0; i<monsters.length; i++)
+	for (var i=0, len=this.monsters.length; i<len; i++)
 	{ 
-		monsters[i].draw();
+		this.monsters[i].draw();
 	}
 }

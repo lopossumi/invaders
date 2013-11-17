@@ -50,7 +50,7 @@ Monster.prototype.modifyHp = function(hit)
 
 Monster.prototype.isAlive = function()
 {
-  return alive;
+  return this.alive;
 }
 
 Monster.prototype.draw = function()
