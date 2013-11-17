@@ -1,5 +1,5 @@
 var monsterImage = new Image();
-monsterImage.src = "images/monster.png";
+monsterImage.src = "images/ghost.png";
 
 
 
