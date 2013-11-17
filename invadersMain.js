@@ -69,6 +69,16 @@ function update()
      }
   }
 
+  // testataan osuuko monsterien ammukset pelaajaan
+
+     for (j=0; j<monsterShots.length; j++)
+     {
+       if ( isCollision(monsterShots[j], ship) ){
+         ship.modifyHp(-10);
+         monsterShots[j].alive = false;
+       }
+     }
+
 
   for (i=0; i<monsterShots.length; i++)
   {
