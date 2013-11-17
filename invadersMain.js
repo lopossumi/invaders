@@ -14,6 +14,7 @@ var playerShots = [];
 var monsterShots = [];
 var ship = new Ship();
 var globe = new Globe();
+var statusBar = new StatusBar(ship);
 
 var monsters = [];
 monsters[0] = new Monster("redMonster", monsterShots);
@@ -52,7 +53,7 @@ function update()
        // if ( isCollision(globe, monsters[j]) )
            // MAAILMANLOPPU
      }
-  
+
 
 
 
@@ -157,6 +158,7 @@ function draw()
 
   globe.draw();
   ship.draw();
+  statusBar.draw();
 
   for (i=0; i<playerShots.length; i++)
     playerShots[i].draw();
@@ -167,6 +169,5 @@ function draw()
 
   for (i=0; i<monsters.length; i++)
     monsters[i].draw();
-
 
 }
